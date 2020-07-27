@@ -1,6 +1,8 @@
 import time
 import random
 
+global CaveVisitCounter 
+CaveVisitCounter = 0
 
 
 
@@ -13,9 +15,11 @@ def initMonster():
     monster = random.choice(monsters)
     return monster
 
+global monster
+monster = initMonster()
 
 # User Response
-def userChoice(choicea, choiceb):
+def userChoice(choicea,choiceb):
     answer = input("Please Enter 1 or 2:")
     while answer not in ('1','2'):
         answer = input("Please Enter 1 or 2:")
@@ -44,26 +48,67 @@ def Intro():
     print("Enter 2 to enter cave")
     delay()
     print("What Would you like to do?")
-    delay()
-    print(userChoice('house','cave'))
+
+def HouseOrCave():
+    #choicea = House()
+    #choiceb = Cave()
+    choice = userChoice("house","cave")
+    if choice == "house":
+        House()
+    elif choice == "cave":
+        Cave()
+
+def FightOrRunAway():
+    #choicea = House()
+    #choiceb = Cave()
+    choice = userChoice("fight","runaway")
+    if choice == "fight":
+        # Check Cave Visit Counter
+        #If sword win
+        #If dagger lose
+    elif choice == "runaway":
+        # return to field 
+        
+
+
 
 def House():
-    return house
+    global monster
+    print("You approach the door of house.")
+    delay()
+    print(f"You knock the door and steps out {monster} .")
+    delay()
+    print(f"This is {monster}'s house' .")
+    delay()
+    print("Would you like to (1) fight or (2) run away? ")
+    return ""
 
 
 def Cave():
-    if HouseVisitCounter > 0 :
-        print("You All Ready Have the Weapon")
+    global CaveVisitCounter
+    print("You peer cautiously into the cave.")
+    delay()
+    if CaveVisitCounter > 0 :
+        print("You've been here and have all the stuff. It's empty now")
     else :
-        print
-    return cave
+        print("It is a very small cave.")
+        delay()
+        print("You see a rock")
+        delay()
+        print("You found the magical Sword of Ilyoon!")
+        delay()
+        print("You discard your old dagger and take the sword with you")
+        delay()
+        print("You walkback out to the field")
+        CaveVisitCounter= +1
 
 
-HouseVisitCounter = 0
-monster = initMonster()
 
-Intro()
-print(monster)
+
+#print(monster)
+#Cave()
+#Cave()
+HouseOrCave()
 
 
 '''
