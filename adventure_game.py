@@ -1,8 +1,12 @@
 import time
 import random
 
-global CaveVisitCounter
-CaveVisitCounter = 0
+
+def startgame():
+    global CaveVisitCounter
+    CaveVisitCounter = 0
+    global monster
+    monster = initMonster()
 
 
 # Text Delay
@@ -20,9 +24,6 @@ def initMonster():
     monster = random.choice(monsters)
     return monster
 
-
-global monster
-monster = initMonster()
 
 # User Response
 
@@ -50,8 +51,6 @@ def Intro():
 
 
 def HouseOrCave():
-    #choicea = House()
-    #choiceb = Cave()
     Prompt("Enter 1 to get into house")
     Prompt("Enter 2 to enter cave")
     Prompt("What Would you like to do?")
@@ -63,8 +62,6 @@ def HouseOrCave():
 
 
 def FightOrRunAway():
-    #choicea = House()
-    #choiceb = Cave()
     choice = userChoice("fight", "runaway")
     if choice == "fight":
         if CaveVisitCounter == 0:
@@ -75,7 +72,8 @@ def FightOrRunAway():
             Prompt(
                 f"As the {monster} moves to attack you unsheath the new sword")
             Prompt(
-                f"The sword shine brightly in your hand as you brace yourself for attack")
+                f"The sword shine brightly in your hand"
+                " as you brace yourself for attack")
             Prompt(f"But {monster} is scared by your weapon and runs away")
             Prompt("You Win")
             PlayAgain()
@@ -112,7 +110,7 @@ def House():
 
 
 def Cave():
-    global CaveVisitCounter534
+    global CaveVisitCounter
     Prompt("You peer cautiously into the cave.")
     if CaveVisitCounter > 0:
         Prompt("You've been here and have all the stuff. It's empty now")
@@ -128,6 +126,7 @@ def Cave():
         HouseOrCave()
 
 
+startgame()
 Intro()
 
 '''
